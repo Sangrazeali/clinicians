@@ -37,10 +37,10 @@ function NewPassword() {
 
     return (
         <div className="bg-custom-gradient">
-            <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto px-10 items-center min-h-screen gap-28">
+            <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto px-10 items-center min-h-screen gap-20 lg:gap-28">
                 <div className="px-5 md:px-0 mx-auto mt-5 w-full">
                     <div className="space-y-1 mb-8">
-                        <h1 className="text-2xl lg:text-3xl">Reset Your Password</h1>
+                        <h1 className="text-2xl lg:text-3xl mb-3">Reset Your Password</h1>
                         <p className="text-xs text-gray-500">
                             Type and confirm a secure new password for the account
                         </p>
@@ -52,7 +52,6 @@ function NewPassword() {
                     >
                         {({ errors, touched, handleChange, handleBlur, values }) => (
                             <Form className="space-y-5">
-                                {/* Password Field */}
                                 <Input
                                     label="New Password"
                                     name="password"

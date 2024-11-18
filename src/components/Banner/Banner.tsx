@@ -1,4 +1,3 @@
-import React from 'react'
 import BannerCard from './BannerCard'
 
 function Banner({title}: {title: string}) {
