@@ -9,7 +9,7 @@ function Home() {
     <div className='pb-12'>
       <Banner title='Overview' />
       <div className='container px-5 mx-auto mt-12 space-y-12'>
-        <div className='grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5'>
+        <div className='grid grid-cols-1 md:grid-cols-[3fr_1fr] gap-5'>
           <BalanceCard />
           <ChartData />
         </div>
