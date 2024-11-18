@@ -1,18 +1,14 @@
-import React from 'react'
-import { AuthBannerBG } from '../../images'
+import { AuthBannerBG } from "../../images";
 
 function AuthBanner() {
-    return (
-        <div className='hidden md:block rounded-2xl bg-black'>
-            <div className='w-full flex flex-col items-center justify-between px-10'>
-                <div className='space-y-4 py-10'>
-                    <h1 className='text-md md:text-lg lg:text-xl text-orange-400'>Welcome In Journey Bridge</h1>
-                    <p className='text-sm md:text-md text-white'>This Platform Aims To Allow You Complete Management Of Your Assets. <br /> <br /> Analyze Your Situation And Make Decisions For Your Business.</p>
-                </div>
-                <img src={AuthBannerBG} className='w-[350px] pt-7 xxl:pt-32 hidden sm:block' alt="" />
-            </div>
-        </div>
-    )
+  return (
+    <div className='lg:py-8'>
+      <img
+        src={AuthBannerBG}
+        className='w-full h-auto'
+        alt='Auth Banner'
+      />
+    </div>
+  );
 }
-
-export default AuthBanner
+export default AuthBanner;
