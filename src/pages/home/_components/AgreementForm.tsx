@@ -46,7 +46,13 @@ const AgreementForm = () => {
                                 <div className="bg-white">
                                     <label htmlFor="profilePhoto" className="flex flex-col text-xs items-center gap-2 cursor-pointer">
                                         {values.profilePhoto ? (
-                                            <img src={URL.createObjectURL(values.profilePhoto)} alt="Profile" />
+                                            <div>
+                                                <img src={URL.createObjectURL(values.profilePhoto)} alt="Profile" />
+                                                <div className='flex justify-center items-center gap-2 mt-2'>
+                                                <p className="text-black text-sm align-middle text-center">Replace Photo</p>
+                                                <img src={PrimaryPlus} className='w-4 h-4' alt="" />
+                                                </div>
+                                            </div>
                                         ) : (
                                             <>
                                                 <div className="relative border-3 rounded-full p-5 border-gray-200">

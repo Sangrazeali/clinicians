@@ -23,7 +23,7 @@ const ProfilePopOver = ({ setDropdownOpen, setIsLogoutClicked }: Props) => {
       <div className='flex flex-col absolute top-0 right-0 left-0 w-60 bg-white border border-borderLightGray shadow-lg h-auto rounded-lg'>
         <div className='w-full flex justify-start gap-2 items-center p-4'>
           <div>
-            <div className='w-16 h-16 overflow-hidden'>
+            <div className='w-10 h-10 overflow-hidden'>
               <img
                 src={user?.profilePicture ? user?.profilePicture : profileImg}
                 alt='Profile'
