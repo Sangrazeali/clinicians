@@ -13,7 +13,7 @@ function SendOtp() {
             <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto px-10 items-center min-h-screen gap-28">
                 <div className="px-5 md:px-0 mx-auto mt-5 w-full">
                     <div className="space-y-1 mb-8">
-                        <h1 className="text-2xl lg:text-3xl">Email Sent</h1>
+                        <h1 className="text-2xl lg:text-3xl mb-3">Email Sent</h1>
                         <p className="text-xs text-gray-500">
                             Thank you. <br />
                             Please check your inbox for verification code sent to example@email.com

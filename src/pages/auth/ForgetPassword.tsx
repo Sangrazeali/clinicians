@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import Banner from '../../components/Banner/Banner'
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import AuthBanner from '../../components/Banner/AuthBanner';
 import Input from '../../components/global-components/Input';
+import Button from '../../components/global-components/Button';
 function ForgetPassword() {
+    const [isLoading, setIsLoading] = useState(false);
+
     const validationSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email format').required('Email is required'),
     });
-    const handleSubmit = (values: { email: string; password: string }) => {
+    const handleSubmit = (values: { email: string }) => {
         console.log('Form Values:', values);
     };
     return (
@@ -16,7 +18,7 @@ function ForgetPassword() {
             <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto px-10 items-center min-h-screen gap-28">
                 <div className="px-5 md:px-0 mx-auto mt-5 w-full">
                     <div className="space-y-1 mb-8">
-                        <h1 className="text-2xl lg:text-3xl">
+                        <h1 className="text-2xl lg:text-3xl mb-3">
                             Forgot Your Password
                         </h1>
                         <p className="text-xs text-gray-500">
@@ -24,7 +26,7 @@ function ForgetPassword() {
                         </p>
                     </div>
                     <Formik
-                        initialValues={{ email: '', password: '' }}
+                        initialValues={{ email: '' }}
                         validationSchema={validationSchema}
                         onSubmit={handleSubmit}
                     >
@@ -41,9 +43,7 @@ function ForgetPassword() {
                                     onBlur={handleBlur}
                                     errorMessage={errors.email && touched.email ? errors.email : ''}
                                 />
-                                <button type="submit" className="bg-black mb-3 hover:shadow-md text-white text-xs font-semibold py-2 px-4 rounded focus:outline-none w-full">
-                                    Send Password Reset Link
-                                </button>
+                                <Button type='submit' children={!isLoading && "Send Password Reset Link"} fullWidth={true} radius='sm' size='sm' className="shadow-md bg-black text-white" isLoading={isLoading} />
                             </Form>
                         )}
                     </Formik>

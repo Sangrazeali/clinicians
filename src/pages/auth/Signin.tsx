@@ -24,7 +24,7 @@ const Signin = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto px-10 items-center min-h-screen gap-28">
                 <div className="px-5 md:px-0 mx-auto mt-5 w-full">
                     <div className="space-y-1 mb-8">
-                        <h1 className="text-2xl lg:text-3xl">Sign in to your Account</h1>
+                        <h1 className="text-2xl lg:text-3xl mb-3">Sign in to your Account</h1>
                     </div>
                     <Formik
                         initialValues={{ email: '', password: '' }}
@@ -40,9 +40,9 @@ const Signin = () => {
                                         id="email"
                                         type="email"
                                         placeholder="example@gmail.com"
-                                        value={values.email} // Bind value to Formik state
-                                        onChange={handleChange} // Bind onChange to Formik handler
-                                        onBlur={handleBlur} // Bind onBlur to Formik handler
+                                        value={values.email}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
                                         errorMessage={errors.email && touched.email ? errors.email : ''}
                                     />
                                 </div>

@@ -15,3 +15,5 @@ export const BalanceBg = require('./balance_background.png');
 export const BlueRectangle = require('./blue-rectangle.png');
 export const YellowRectangle = require('./yellow-rectangle.png');
 export const BalanceCardBg = require('./BalanceCardBg.png');
+export const AuthBannerBG = require('./auth-banner.png');
+export const Verify = require('./verify.png');

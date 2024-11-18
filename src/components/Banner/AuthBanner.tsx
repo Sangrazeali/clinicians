@@ -1,5 +1,5 @@
 import React from 'react'
-import { BannerCharachter } from '../../images'
+import { AuthBannerBG } from '../../images'
 
 function AuthBanner() {
     return (
@@ -9,7 +9,7 @@ function AuthBanner() {
                     <h1 className='text-md md:text-lg lg:text-xl text-orange-400'>Welcome In Journey Bridge</h1>
                     <p className='text-sm md:text-md text-white'>This Platform Aims To Allow You Complete Management Of Your Assets. <br /> <br /> Analyze Your Situation And Make Decisions For Your Business.</p>
                 </div>
-                <img src={BannerCharachter} className='w-[250px] pt-7 xxl:pt-32 hidden sm:block' alt="" />
+                <img src={AuthBannerBG} className='w-[350px] pt-7 xxl:pt-32 hidden sm:block' alt="" />
             </div>
         </div>
     )
