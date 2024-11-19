@@ -17,3 +17,6 @@ export const YellowRectangle = require('./yellow-rectangle.png');
 export const BalanceCardBg = require('./BalanceCardBg.png');
 export const AuthBannerBG = require('./auth-banner.png');
 export const Verify = require('./verify.png');
+export const CountryFlag = require('./country-flag.png');
+export const PhoneIcon = require('./phone-icon.png');
+export const EmailIcon = require('./email-icon.png');

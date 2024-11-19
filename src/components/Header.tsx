@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({
 
               <span className='whitespace-nowrap'>Sunny</span>
               <svg
-                className={`w-4 h-4 app-transition-all-300 ${
+                className={`w-6 h-6 app-transition-all-300 ${
                   isDropdownOpen ? "rotate-180" : "rotate-0"
                 }`}
                 fill='none'
