@@ -4,14 +4,17 @@ import * as Yup from 'yup';
 import AuthBanner from '../../components/Banner/AuthBanner';
 import Input from '../../components/global-components/Input';
 import Button from '../../components/global-components/Button';
+import { useUserActions } from '../../context-api/actions';
+
 function ForgetPassword() {
     const [isLoading, setIsLoading] = useState(false);
-
+    const  {forgetPassword} = useUserActions()
     const validationSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email format').required('Email is required'),
     });
     const handleSubmit = (values: { email: string }) => {
         console.log('Form Values:', values);
+        forgetPassword(values.email);
     };
     return (
         <div className='bg-custom-gradient ' >

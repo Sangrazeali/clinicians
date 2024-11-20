@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const ApiRequest = () => {
   const request = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+    baseURL: process.env.REACT_APP_API_INSTANCE,
     headers: {
       Authorization: `Bearer ${getAccessTokenFromCookie() || ""}`,
       "Content-Type": "application/json",
