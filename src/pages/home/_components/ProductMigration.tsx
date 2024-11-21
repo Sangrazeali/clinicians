@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Card from '../../../components/global-components/Card'
 import Product from './Product'
 import Modal from '../../../components/global-components/Modal'
 import AgreementForm from './AgreementForm'
 import { formatNumber } from '../../../utils/numberFormatter'
-
-function ProductMigration() {
+import { useAppContext } from '../../../context-api'
+import {Spinner} from "@nextui-org/spinner";
+function ProductMigration({loadingStates}:any) {
     const formattedNumber = formatNumber(25000);
+    const { state } = useAppContext();
+    const products = state?.product;
+    console.log("ppp",products)
+    console.log("lll",loadingStates.productLoading)
     return (
         <div>
             <div className='border rounded-xl bg-white'>
@@ -19,13 +24,14 @@ function ProductMigration() {
                     </div>
 
                     <div className='p-7'>
-                        <ul>
-                            <li className='border-b pb-2'>
-                                <Product />
-                            </li>
-                            <li className='border-b pb-2'>
-                                <Product />
-                            </li>
+                        <ul className='h-[350px] overflow-y-scroll scrollbar-hide'>
+                            {loadingStates.productLoading === true ?<div className='flex justify-center items-center h-full'> <Spinner color='warning' /> </div>:
+                                products != null && products?.map((product: any, index: any) => (
+                                    <li key={index} className='border-b pb-2'>
+                                        <Product name={product?.name} image={product?.imageUrl} price={product?.amount} />
+                                    </li>
+                                ))
+                            }
                         </ul>
                         <div className='flex justify-end pt-7'>
                             <Modal children="Migrate" btncolor='primary' size='5xl' scrollBehavior='inside' className='scrollbar-hide' bodyContent={<>

@@ -8,9 +8,9 @@ export const setAccessTokenCookie = (access_token: string) => {
   cookie.set("access_token", JSON.stringify(access_token), {
     path: "/",
     expires: new Date(
-      new Date().getTime() + COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000
+      new Date().getTime() + COOKIE_EXPIRATION_DAYS * 10 * 60 * 60 * 1000
     ),
-    secure: process.env.NODE_ENV === "production", // Enable secure flag in production
+    secure: process.env.NODE_ENV === "production",
     httpOnly: false,
   });
 };

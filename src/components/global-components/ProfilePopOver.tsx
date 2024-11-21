@@ -1,5 +1,8 @@
 import { memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppContext } from "../../context-api";
+import { removeAccessTokenCookie } from "../../utils/cookies-actions/user.cookies";
+import constantPaths from "../../routes/constantPaths";
 
 type Props = {
   setIsLogoutClicked?: (e: boolean) => void;
@@ -8,19 +11,26 @@ type Props = {
 
 const ProfilePopOver = ({ setDropdownOpen, setIsLogoutClicked }: Props) => {
   const navigate = useNavigate();
-
+  const { state,dispatch } = useAppContext();
+  const userData = state.profile;
   const userProfile = () => navigate("/profile");
   const profileImg =
     "https://admin.homnifi.codeinprogress.net/img/Profile/profile.jpg";
   const user = {
-    username: "Sunny",
-    email: "sunny@softbuilders.ae",
-    profilePicture: "",
+    username: userData?.userName,
+    email: userData?.email,
+    profilePicture: userData?.profilePicture,
+  };
+
+  const handleLogout = () => {
+    removeAccessTokenCookie();
+    dispatch({ type: "PROFILE_SUCCESS", payload: null });
+    navigate(`${constantPaths.SIGN_IN}`)
   };
 
   return (
     <>
-      <div className='flex flex-col absolute top-0 right-0 w-60 bg-white border border-borderLightGray shadow-lg h-auto rounded-lg'>
+      <div className='flex flex-col absolute top-2.5 right-0 w-60 bg-white border border-borderLightGray shadow-lg h-auto rounded-lg'>
         <div className='w-full flex justify-start gap-2 items-center p-4'>
           <div>
             <div className='w-10 h-10 overflow-hidden'>
@@ -33,22 +43,17 @@ const ProfilePopOver = ({ setDropdownOpen, setIsLogoutClicked }: Props) => {
           </div>
           <div className='flex flex-col gap-2 w-full'>
             <div className='flex flex-col gap-0'>
-              <Link
-                to='/profile'
+              <p
                 className='text-sm font-medium leading-0 flex items-center gap-2'
-                // onClick={() => setDropdownOpen(false)}
+              // onClick={() => setDropdownOpen(false)}
               >
                 @{user?.username}
-              </Link>
-              <Link
-                to='/profile'
+              </p>
+              <p
                 className='text-xs text-app-gray-400'
-                onClick={() => {
-                  setDropdownOpen && setDropdownOpen(false);
-                }}
               >
                 {user?.email}
-              </Link>
+              </p>
             </div>
           </div>
         </div>
@@ -62,8 +67,8 @@ const ProfilePopOver = ({ setDropdownOpen, setIsLogoutClicked }: Props) => {
           >
             Profile
           </button>*/}
-          <hr /> 
-          <button className='font-medium flex items-center gap-1 text-sm text-app-gray-400 hover:text-red-600 transition-all py-3 px-4'>
+          <hr />
+          <button onClick={() => { handleLogout() }} className='font-medium flex items-center gap-1 text-sm text-app-gray-400 hover:text-red-600 transition-all py-3 px-4'>
             Logout
           </button>
         </div>

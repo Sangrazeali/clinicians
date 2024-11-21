@@ -2,17 +2,21 @@ import React from 'react'
 import {  Miner } from '../../../images/index';
 import { formatNumber } from '../../../utils/numberFormatter';
 
-function Product() {
-    const formattedNumber = formatNumber(25000);
-    const lykPrice = formatNumber(350);
+export interface ProductProps {
+    image: string;
+    name: string;
+    price: number;
+}
+function Product({ image, name, price }: ProductProps) {
+    const formattedNumber = formatNumber(price);
 
     return (
         <>
-            <div className='flex flex-wrap space-y-3 md:space-y-0 md:flex-nowrap justify-between items-center pt-5'>
-                <div className='flex items-center gap-2'>
-                    <img src={Miner} alt="" />
-                    <div className='space-y-1'>
-                        <p className='font-semibold text-md'>Homnifi Breeze</p>
+            <div className='flex space-y-3 md:space-y-0 md:flex-nowrap justify-between items-center pt-5'>
+                <div className='flex flex-col md:flex-row md:items-center gap-2'>
+                    <img src={image} className='w-[120px] md:w-[200px]' alt="" />
+                    <div className=''>
+                        <p className='font-semibold text-md'>{name}</p>
                     </div>
                 </div>
                 <p className='font-semibold text-md'>$ <span>{formattedNumber}</span></p>

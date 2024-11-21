@@ -7,13 +7,13 @@ import Button from '../../components/global-components/Button';
 import { useUserActions } from '../../context-api/actions';
 
 function ForgetPassword() {
-    const [isLoading, setIsLoading] = useState(false);
-    const  {forgetPassword} = useUserActions()
+    const  {forgetPassword,loadingStates} = useUserActions()
     const validationSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email format').required('Email is required'),
     });
     const handleSubmit = (values: { email: string }) => {
         console.log('Form Values:', values);
+        console.log("loader",loadingStates.forgetPasswordLoading)
         forgetPassword(values.email);
     };
     return (
@@ -46,7 +46,7 @@ function ForgetPassword() {
                                     onBlur={handleBlur}
                                     errorMessage={errors.email && touched.email ? errors.email : ''}
                                 />
-                                <Button type='submit' children={!isLoading && "Send Password Reset Link"} fullWidth={true} radius='sm' size='sm' className="shadow-md bg-black text-white" isLoading={isLoading} />
+                                <Button type='submit' children={!loadingStates.forgetPasswordLoading && "Send Password Reset Link"} fullWidth={true} radius='sm' size='sm' className="shadow-md bg-black text-white" isLoading={loadingStates.forgetPasswordLoading} />
                             </Form>
                         )}
                     </Formik>

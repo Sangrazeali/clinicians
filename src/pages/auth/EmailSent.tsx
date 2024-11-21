@@ -3,10 +3,13 @@ import React, { useState } from 'react'
 import OtpInput from 'react-otp-input';
 import Banner from '../../components/Banner/Banner';
 import AuthBanner from '../../components/Banner/AuthBanner';
+import Button from '../../components/global-components/Button';
 function SendOtp() {
     const [otp, setOtp] = useState<string>('');
     const [hasError, setHasError] = useState<boolean>(false);
-
+    const openMailbox = () => {
+        window.location.href = "mailto:";
+      };
     const handleChange = (value: string) => {
         setOtp(value);
 
@@ -28,12 +31,10 @@ function SendOtp() {
                         </p>
                     </div>
 
-                    <button type="submit" className="bg-black mb-3 hover:shadow-md text-white text-xs font-semibold py-2 px-4 rounded focus:outline-none w-full">
-                        Open Email Box
-                    </button>
-                    <p className="text-center text-xs text-gray-500">
+                    <Button type='button' onClick={openMailbox} children={"Open Email Box"} fullWidth={true} radius='sm' size='sm' className="shadow-md mb-3 bg-black text-white" />
+                    {/* <p className="text-center text-xs text-gray-500">
                         Didn’t receive an email? <span className='text-app-primary cursor-pointer hover:underline'>Resend</span>
-                    </p>
+                    </p> */}
                 </div>
                 <AuthBanner />
             </div>

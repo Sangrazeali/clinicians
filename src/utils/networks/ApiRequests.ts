@@ -14,7 +14,7 @@ export const ApiRequest = () => {
     },
     responseType: "json",
     socketPath: null,
-    withCredentials: false,
+    withCredentials: true,
   });
 
   request.interceptors.response.use(
@@ -37,3 +37,5 @@ export const ApiRequest = () => {
 
   return request;
 };
+
+// api.jb.codeinprogress.net

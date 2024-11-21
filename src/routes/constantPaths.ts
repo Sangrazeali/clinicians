@@ -13,7 +13,7 @@ const constantPaths:PathConstants = {
     SIGN_IN: "/auth/signin",
     FORGET_PASSWORD: "/auth/forget-password",
     SEND_OTP: "/auth/send-otp",
-    NEW_PASSWORD: "/auth/new-password",
+    NEW_PASSWORD: "/auth/reset-password",
     EMAIL_SENT: "/auth/email-sent",
 }
 

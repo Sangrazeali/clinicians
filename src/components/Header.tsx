@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ProfilePopOver from "./global-components/ProfilePopOver";
 import { jbLogo } from "../images";
+import { useUserActions } from "../context-api/actions";
+import { useAppContext } from "../context-api";
+import { getAccessTokenFromCookie } from "../utils/cookies-actions/user.cookies";
 
 
 interface HeaderProps {
@@ -15,7 +18,8 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const dropdownRef = React.useRef<HTMLDivElement>(null);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
-
+  const { state } = useAppContext();
+  const userData = state.profile;
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -34,11 +38,12 @@ const Header: React.FC<HeaderProps> = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+
   }, []);
 
   return (
-    <header className='border-b bg-black p-4 md:p-2'>
-      <div className='container mx-auto px-5 flex items-center space-x-3 md:justify-between'>
+    <header className='border-b bg-black md:p-4'>
+      <div className='container mx-auto px-5  flex items-center space-x-3 md:justify-between'>
         <div className=' flex items-center justify-between md:justify-normal space-x-4 w-full'>
           <Link to={`/`}>
             <div className='bg-black px-2'>
@@ -48,7 +53,8 @@ const Header: React.FC<HeaderProps> = ({
           
           {/* <h1 className='capitalize text-2xl'>{title}</h1> */}
         </div>
-        <div className='hidden md:block  rounded-full p-2 text-sm text-white'>
+        {userData && (
+          <div className='hidden md:block  rounded-full text-sm text-white'>
           <div className='relative'>
             <button
               onClick={toggleDropdown}
@@ -60,9 +66,9 @@ const Header: React.FC<HeaderProps> = ({
                 className='w-8 h-8 rounded-full'
               />
 
-              <span className='whitespace-nowrap'>Sunny</span>
+              <span className='whitespace-nowrap'>{userData?.userName}</span>
               <svg
-                className={`w-6 h-6 app-transition-all-300 ${
+                className={`w-9 h-9 app-transition-all-300 ${
                   isDropdownOpen ? "rotate-180" : "rotate-0"
                 }`}
                 fill='none'
@@ -88,6 +94,8 @@ const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
         </div>
+        )}
+        
       </div>
     </header>
   );

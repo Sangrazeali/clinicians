@@ -180,10 +180,9 @@ const AgreementForm = () => {
                                     onBlur={handleBlur}
                                     errorMessage={touched.documentType && errors.documentType ? errors.documentType : undefined}
                                 />
-                                <div className="flex flex-wrap md:flex-nowrap gap-2 mb-5">
-                                    {/* Front Document Upload */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-5">
                                     <div className="bg-white">
-                                        <label className="relative h-full p-10 text-center cursor-pointer text-xs rounded-lg border-dotted border-2 border-gray-200 flex justify-center items-center">
+                                        <label className="relative w-full h-25 p-10 text-center cursor-pointer text-xs rounded-lg border-dotted border-2 border-gray-200 flex justify-center items-center">
                                             <div className="absolute flex flex-col items-center gap-2">
                                                 <img src={UploaDoc} className="w-8" alt="" />
                                                 <span className="block text-black font-normal">Upload Frontside of Document</span>
@@ -196,10 +195,14 @@ const AgreementForm = () => {
                                                 }
                                             />
                                         </label>
+                                        {values.frontDocument && (
+                                            <div className='w-full mt-5'>
+                                                <img src={URL.createObjectURL(values.frontDocument)} className='w-full' alt="frontdocument" />
+                                            </div>
+                                        )}
                                     </div>
-                                    {/* Back Document Upload */}
                                     <div className="bg-white">
-                                        <label className="relative h-full p-10 text-center cursor-pointer text-xs rounded-lg border-dotted border-2 border-gray-200 flex justify-center items-center">
+                                        <label className="relative w-50 h-25 p-10 text-center cursor-pointer text-xs rounded-lg border-dotted border-2 border-gray-200 flex justify-center items-center">
                                             <div className="absolute flex flex-col items-center gap-2">
                                                 <img src={UploaDoc} className="w-8" alt="" />
                                                 <span className="block text-black font-normal">Upload Backside of Document</span>
@@ -210,6 +213,11 @@ const AgreementForm = () => {
                                                 onChange={(e) => setFieldValue('backDocument', e.target.files ? e.target.files[0] : null)}
                                             />
                                         </label>
+                                        {values.backDocument && (
+                                            <div className='w-full mt-5'>
+                                                <img src={URL.createObjectURL(values.backDocument)} className='w-full' alt="backdocument" />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-2">

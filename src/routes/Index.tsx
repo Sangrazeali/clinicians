@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import constantPaths from './constantPaths';
 import ForgetPassword from '../pages/auth/ForgetPassword';
 import NewPassword from '../pages/auth/NewPassword';
+import PrivateRoute from './PrivateRoute';
 
 const Home = React.lazy(() => import("../pages/home/Home"));
 const Signin = React.lazy(() => import("../pages/auth/Signin"));
@@ -14,7 +15,9 @@ const routes = [
     element: (
       <Suspense fallback={<div> Loading...</div>
       } >
-        <Home />
+          <PrivateRoute>
+              <Home />
+            </PrivateRoute>
       </Suspense>
     ),
   },
