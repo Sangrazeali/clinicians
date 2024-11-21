@@ -23,7 +23,7 @@ const ProfilePopOver = ({ setDropdownOpen, setIsLogoutClicked }: Props) => {
 
   const handleLogout = () => {
     removeAccessTokenCookie();
-    dispatch({ type: "PROFILE_SUCCESS", payload: null });
+    dispatch({ type: "DASHBOARD_DATA", payload: null });
     navigate(`${constantPaths.SIGN_IN}`)
   };
 
