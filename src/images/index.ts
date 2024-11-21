@@ -20,3 +20,5 @@ export const Verify = require('./verify.png');
 export const CountryFlag = require('./country-flag.png');
 export const PhoneIcon = require('./phone-icon.png');
 export const EmailIcon = require('./email-icon.png');
+export const UserPlaceholder = require('./user-placeholder.png');
+export const MigrationAvatar = require('./migration-avatar.png');

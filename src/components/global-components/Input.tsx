@@ -13,6 +13,7 @@ export interface InputProps {
     showPasswordToggle?: boolean;
     eyeIcon?: string;
     eyeCloseIcon?: string;
+    disabled?: boolean
 }
 
 function Input({
@@ -28,6 +29,7 @@ function Input({
     showPasswordToggle = false,
     eyeIcon,
     eyeCloseIcon,
+    disabled
 }: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -44,6 +46,7 @@ function Input({
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
+                    disabled={disabled}
                     onBlur={onBlur}
                     className={`block w-full border ${errorMessage ? 'border-red-500' : 'border-gray-200'
                         } text-gray-700 py-2.5 px-3 rounded leading-tight focus:outline-none focus:bg-white ${errorMessage ? 'focus:border-red-500' : 'focus:border-gray-500'

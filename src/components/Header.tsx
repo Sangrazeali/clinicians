@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({
   const dropdownRef = React.useRef<HTMLDivElement>(null);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
   const { state } = useAppContext();
-  const userData = state.profile;
+  const userData = state.dashboard_data;
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };

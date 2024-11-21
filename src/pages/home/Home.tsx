@@ -6,11 +6,10 @@ import ProductMigration from './_components/ProductMigration'
 import BalanceMigration from './_components/BalanceMigration'
 import { useUserActions } from '../../context-api/actions'
 function Home() {
-  const {Profile,getProductsList,loadingStates} = useUserActions();
+  const {Profile,getDashboardData,loadingStates} = useUserActions();
 
   useEffect(() => {
-    Profile();
-    getProductsList();
+    getDashboardData();
   },[])
   return (
     <div className='pb-12'>

@@ -1,23 +1,17 @@
 import { ResponsivePie } from "@nivo/pie";
 
-const PieChart = () => {
+const PieChart = ({ balance, total }: { balance: number; total: number }) => {
   const data = [
     {
       id: "balance",
       label: "Balance",
-      value: 60,
+      value: balance,
       color: "#f72585",
     },
     {
-      id: "used",
-      label: "Used",
-      value: 20,
-      color: "#1b9fda",
-    },
-    {
-      id: "credit",
-      label: "Credit",
-      value: 20,
+      id: "total",
+      label: "Total",
+      value: total,
       color: "#480ca8",
     },
   ];
@@ -31,7 +25,7 @@ const PieChart = () => {
           padAngle={1.5}
           cornerRadius={4}
           activeOuterRadiusOffset={10}
-          colors={[data[0].color, data[1].color,data[2].color]}
+          colors={[data[0].color, data[1].color]}
           borderColor={{
             from: "color",
             modifiers: [["darker", 0.2]],

@@ -13,7 +13,9 @@ export const initialState: State = {
   Reset_Password: null,
   profile: null,
   failedToken:false,
-  product:null
+  product:null,
+  post_migration:null,
+  dashboard_data:null
 };
 
 // Create the context

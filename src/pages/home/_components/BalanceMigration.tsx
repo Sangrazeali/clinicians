@@ -6,7 +6,7 @@ import { Skeleton } from '@nextui-org/react';
 
 function BalanceMigration() {
   const { state } = useAppContext();
-  const num = state?.profile?.balance
+  const num = state?.dashboard_data?.balance
   const formattedNumber = formatNumber(num);
   return (
     <div className='relative w-full' >

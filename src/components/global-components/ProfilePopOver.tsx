@@ -12,8 +12,7 @@ type Props = {
 const ProfilePopOver = ({ setDropdownOpen, setIsLogoutClicked }: Props) => {
   const navigate = useNavigate();
   const { state,dispatch } = useAppContext();
-  const userData = state.profile;
-  const userProfile = () => navigate("/profile");
+  const userData = state.dashboard_data;
   const profileImg =
     "https://admin.homnifi.codeinprogress.net/img/Profile/profile.jpg";
   const user = {

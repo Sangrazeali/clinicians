@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppContext } from ".";
 import NewPassword from "../pages/auth/NewPassword";
 import constantPaths from "../routes/constantPaths";
-import { FORGET_PASS, GET_PRODUCTS, PROFILE, REST_PASS, SIGN_IN } from "../utils/networks/ApiEndPoints";
+import { FORGET_PASS, GET_DASHBOARD, GET_PRODUCTS, POST_MIGRATION, PROFILE, REST_PASS, SIGN_IN } from "../utils/networks/ApiEndPoints";
 import { ApiRequest } from "../utils/networks/ApiRequests";
 import { setAccessTokenCookie } from "../utils/cookies-actions/user.cookies";
 
@@ -14,7 +14,9 @@ export interface State {
   Reset_Password: Reset_Password | null;
   profile: any,
   failedToken: boolean,
-  product: any
+  product: any,
+  post_migration: any,
+  dashboard_data: any
 }
 
 export interface User {
@@ -48,8 +50,8 @@ export interface Profile {
   _id: string;
 }
 
-export interface Failed_Token{
-    message?:boolean
+export interface Failed_Token {
+  message?: boolean
 }
 
 export type Action =
@@ -59,6 +61,8 @@ export type Action =
   | { type: 'LOGIN_SUCCESS'; payload: User }
   | { type: 'PROFILE_SUCCESS'; payload: any }
   | { type: 'PRODUCT_SUCCESS'; payload: any }
+  | { type: 'DASHBOARD_DATA'; payload: any }
+  | { type: 'POST_MIGRATION'; payload: any }
   | { type: 'FAILED_TOKEN'; payload: boolean }
   | { type: 'LOGOUT' };
 
@@ -103,10 +107,10 @@ export const useUserActions = () => {
         dispatch({ type: "RESET_PASSWORD", payload: response.data });
         navigate(`${constantPaths.SIGN_IN}`, { state: { message: "Congrats, You have successfully reset your password, you can now login with your new password." } });
       }
-      
+
     } catch (err: any) {
       dispatch({ type: "FAILED_TOKEN", payload: true });
-      console.error("error",err);
+      console.error("error", err);
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
     }
@@ -137,6 +141,52 @@ export const useUserActions = () => {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
     }
   };
+  const getDashboardData = async () => {
+    const actionKey = "dashboardLoading";
+    try {
+      dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: true } });
+
+      const response = await ApiRequest().request({
+        method: "GET",
+        url: `${GET_DASHBOARD}`,
+      });
+
+      if (response && response.data) {
+        dispatch({ type: "DASHBOARD_DATA", payload: response.data.result });
+        console.log("response", response)
+      }
+    } catch (err: any) {
+      console.error(err);
+    } finally {
+      dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
+    }
+  };
+
+  const postMigration = async (formData: FormData) => {
+    const actionKey = "migrationLoading";
+    try {
+      dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: true } });
+
+      const response = await ApiRequest().request({
+        method: "POST",
+        url: `${POST_MIGRATION}`,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" }, // Let the browser set the boundary
+      });
+
+      if (response && response.data.success == true) {
+        dispatch({ type: "POST_MIGRATION", payload: response.data });
+        getDashboardData();
+      }
+    } catch (err: any) {
+      console.error(err);
+      console.log(err)
+      dispatch({ type: "POST_MIGRATION", payload: err });
+    } finally {
+      dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
+    }
+  };
+
   const Profile = async () => {
     const actionKey = "profileLoading";
     try {
@@ -158,33 +208,14 @@ export const useUserActions = () => {
     }
   };
 
-  const getProductsList = async () => {
-    const actionKey = "productLoading";
-    try {
-      dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: true } });
-
-      const response = await ApiRequest().request({
-        method: "GET",
-        url: `${GET_PRODUCTS}`,
-      });
-
-      if (response && response.data) {
-        dispatch({ type: "PRODUCT_SUCCESS", payload: response.data.result });
-        console.log("response", response)
-      }
-    } catch (err: any) {
-      console.error(err);
-    } finally {
-      dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
-    }
-  };
 
   return {
     forgetPassword,
     resetPassword,
     SignIn,
     Profile,
-    getProductsList,
+    getDashboardData,
+    postMigration,
     loadingStates: state.loadingStates
   };
 }

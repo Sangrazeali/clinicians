@@ -9,7 +9,9 @@ export const initialState: State = {
   Reset_Password: null,
   profile:null,
   failedToken:false,
-  product:null
+  product:null,
+  post_migration:null,
+  dashboard_data:null
 
 };
 
@@ -30,6 +32,10 @@ export const appReducer = (state: State, action: Action): State => {
       return { ...state, profile: action.payload, error: null };
     case 'PRODUCT_SUCCESS':
       return { ...state, product: action.payload, error: null };
+    case 'POST_MIGRATION':
+      return { ...state, post_migration: action.payload, error: null };
+    case 'DASHBOARD_DATA':
+      return { ...state, dashboard_data: action.payload, error: null };
     case 'FAILED_TOKEN':
       return { ...state, failedToken: action.payload, error: null };
     case 'LOGOUT':

@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react'
-import Card from '../../../components/global-components/Card'
 import Product from './Product'
 import Modal from '../../../components/global-components/Modal'
 import AgreementForm from './AgreementForm'
@@ -7,11 +5,10 @@ import { formatNumber } from '../../../utils/numberFormatter'
 import { useAppContext } from '../../../context-api'
 import {Spinner} from "@nextui-org/spinner";
 function ProductMigration({loadingStates}:any) {
-    const formattedNumber = formatNumber(25000);
     const { state } = useAppContext();
-    const products = state?.product;
-    console.log("ppp",products)
-    console.log("lll",loadingStates.productLoading)
+    const products = state?.dashboard_data?.products;
+    const user = state?.dashboard_data;
+    const formattedNumber = formatNumber(user?.totalReceived);
     return (
         <div>
             <div className='border rounded-xl bg-white'>
@@ -19,7 +16,7 @@ function ProductMigration({loadingStates}:any) {
                     <div className='border-b p-7 rounded-t-xl bg-[#F5F5F5]'>
                         <p className='text-black'>
                             What you will recieve
-                            <span className='text-xl ml-3 font-semibold bg-white border border-[#C6C6C6] py-1 px-3 rounded-lg text-center'>${formattedNumber}</span>
+                            <span className='text-xl ml-3 font-semibold bg-white border border-[#C6C6C6] py-1 px-3 rounded-lg text-center'>${formattedNumber !=="NaN" ? formattedNumber : "0"}</span>
                         </p>
                     </div>
 
@@ -34,9 +31,16 @@ function ProductMigration({loadingStates}:any) {
                             }
                         </ul>
                         <div className='flex justify-end pt-7'>
-                            <Modal children="Migrate" btncolor='primary' size='5xl' scrollBehavior='inside' className='scrollbar-hide' bodyContent={<>
+                            {user?.applicationStatus === "pending" ?
+                            (<Modal children="Migrate" btncolor='primary' size='5xl' scrollBehavior='inside' className='scrollbar-hide' bodyContent={<>
                                 <AgreementForm />
-                            </>} />
+                            </>} />)  
+                            :
+                            (<p className='py-2 px-4 w-[200px] text-center text-purple-800 bg-purple-100 rounded-md capitalize'>
+                                {user?.applicationStatus}
+                            </p>) 
+                        }
+                            
                         </div>
                     </div>
                 </div>
