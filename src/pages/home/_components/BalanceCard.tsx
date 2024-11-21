@@ -24,9 +24,9 @@ function BalanceCard({loadingStates}:any) {
                         <button className='bg-transparent border w-[200px] mx-auto border-black hover:bg-black hover:text-white tranistion ease-in-out duration-250 rounded-md px-5 py-1.5 text-sm'>Migrate</button>
                     </div>
                 </div>
-                <div className='lg:hidden order-1 lg:order-2 mb-10 lg:mb-0 lg:mt-5 flex flex-col items-center'>
-                    <img src={Verify} alt="" />
-                    <p className='text-center'>You are <br /> Eligible for Migration</p>
+                <div className='lg:hidden order-1 lg:order-2 mb-10 lg:mb-0 lg:mt-5 flex items-center gap-2'>
+                    <img src={Verify} className='w-7' alt="" />
+                    <p className='text-center'>You are Eligible for Migration</p>
                 </div>
             </div>
         </div>
