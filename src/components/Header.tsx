@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
   }, []);
 
   return (
-    <header className='border-b bg-black md:p-4'>
+    <header className='border-b bg-black p-2 md:p-4'>
       <div className='container mx-auto px-5  flex items-center space-x-3 md:justify-between'>
         <div className=' flex items-center justify-between md:justify-normal space-x-4 w-full'>
           <Link to={`/`}>
@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({
           {/* <h1 className='capitalize text-2xl'>{title}</h1> */}
         </div>
         {userData && (
-          <div className='hidden md:block  rounded-full text-sm text-white'>
+          <div className='rounded-full text-sm text-white'>
           <div className='relative'>
             <button
               onClick={toggleDropdown}
@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({
 
               <span className='whitespace-nowrap'>{userData?.userName}</span>
               <svg
-                className={`w-9 h-9 app-transition-all-300 ${
+                className={`w-10 h-10 app-transition-all-300 ${
                   isDropdownOpen ? "rotate-180" : "rotate-0"
                 }`}
                 fill='none'

@@ -27,7 +27,7 @@ export const setRefreshTokenCookie = (refreshToken: string) => {
   cookie.set("refresh_token", refreshToken, {
     path: "/",
     expires: new Date(
-      new Date().getTime() + COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000
+      new Date().getTime() + COOKIE_EXPIRATION_DAYS * 1 * 60 * 60 * 1000
     ),
     secure: process.env.NODE_ENV === "production",
   });
