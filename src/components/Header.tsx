@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({
   const dropdownRef = React.useRef<HTMLDivElement>(null);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
   const { state } = useAppContext();
-  const userData = state.dashboard_data;
+  const userData = state?.dashboard_data;
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -61,14 +61,14 @@ const Header: React.FC<HeaderProps> = ({
               className='flex items-center space-x-2'
             >
               <img
-                src='https://admin.homnifi.codeinprogress.net/img/Profile/profile.jpg'
+                src={userData?.profilePhoto ? userData?.profilePhoto :'https://admin.homnifi.codeinprogress.net/img/Profile/profile.jpg'}
                 alt='Profile'
                 className='w-8 h-8 rounded-full'
               />
 
               <span className='whitespace-nowrap'>{userData?.userName}</span>
               <svg
-                className={`w-10 h-10 app-transition-all-300 ${
+                className={`w-5 h-5 app-transition-all-300 ${
                   isDropdownOpen ? "rotate-180" : "rotate-0"
                 }`}
                 fill='none'
