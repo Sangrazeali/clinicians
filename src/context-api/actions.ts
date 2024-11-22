@@ -86,7 +86,7 @@ export const useUserActions = () => {
         navigate(`${constantPaths.EMAIL_SENT}`);
       }
     } catch (err: any) {
-      const errorMessage = err.response?.data?.message || "Invalid email please try again with another email";
+      const errorMessage = err?.data?.message || "Invalid email please try again with another email";
       throw new Error(errorMessage);
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
@@ -139,7 +139,8 @@ export const useUserActions = () => {
         }
       }
     } catch (err: any) {
-      const errorMessage = err.response?.data?.message || "Something went wrong please check your credentials";
+      console.log("error", err);
+      const errorMessage = err?.data?.message || "Something went wrong please check your credentials";
       throw new Error(errorMessage);
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
@@ -184,7 +185,7 @@ export const useUserActions = () => {
       }
     } catch (err: any) {
       console.error(err);
-      const errorMessage = err.response?.data?.message || "Something went wrong please try again";
+      const errorMessage = err?.data?.message || "Something went wrong please try again";
       throw new Error(errorMessage);
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
