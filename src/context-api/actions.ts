@@ -5,6 +5,7 @@ import constantPaths from "../routes/constantPaths";
 import { FORGET_PASS, GET_DASHBOARD, GET_PRODUCTS, POST_MIGRATION, PROFILE, REST_PASS, SIGN_IN } from "../utils/networks/ApiEndPoints";
 import { ApiRequest } from "../utils/networks/ApiRequests";
 import { setAccessTokenCookie } from "../utils/cookies-actions/user.cookies";
+import { error } from "console";
 
 export interface State {
   user: User | null;
@@ -85,7 +86,8 @@ export const useUserActions = () => {
         navigate(`${constantPaths.EMAIL_SENT}`);
       }
     } catch (err: any) {
-      console.error(err);
+      const errorMessage = err.response?.data?.message || "Invalid email please try again with another email";
+      throw new Error(errorMessage);
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
     }
@@ -111,6 +113,7 @@ export const useUserActions = () => {
     } catch (err: any) {
       dispatch({ type: "FAILED_TOKEN", payload: true });
       console.error("error", err);
+
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
     }
@@ -136,7 +139,8 @@ export const useUserActions = () => {
         }
       }
     } catch (err: any) {
-      console.error(err);
+      const errorMessage = err.response?.data?.message || "Something went wrong please check your credentials";
+      throw new Error(errorMessage);
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
     }
@@ -180,8 +184,8 @@ export const useUserActions = () => {
       }
     } catch (err: any) {
       console.error(err);
-      console.log(err)
-      dispatch({ type: "POST_MIGRATION", payload: err });
+      const errorMessage = err.response?.data?.message || "Something went wrong please try again";
+      throw new Error(errorMessage);
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
     }

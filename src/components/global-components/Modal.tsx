@@ -8,14 +8,15 @@ export interface IModalProps extends NextModalProps {
     primaryButtonLabel?: string,
     secondaryButtonLabel?: string,
     children: React.ReactNode | string,
-    btncolor?: "default" | "primary" | "secondary" | "success" | "warning" | "danger" | undefined
+    btncolor?: "default" | "primary" | "secondary" | "success" | "warning" | "danger" | undefined,
+    btnClasses?: string
 }
 const Modal = forwardRef<HTMLDivElement, IModalProps>((props, ref) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-    const { children, title, btncolor, bodyContent, primaryButtonLabel, secondaryButtonLabel, ...rest } = props;
+    const { children, title, btncolor, bodyContent, primaryButtonLabel, secondaryButtonLabel,btnClasses, ...rest } = props;
     return (
         <>
-            <Button onPress={onOpen} color={btncolor} size="md" fullWidth={true} className="w-[200px] shadow-md bg-[#F8971D]" radius="sm" >{children}</Button>
+            <Button onPress={onOpen} color={btncolor} size="md" fullWidth={true} className={btnClasses} radius="sm" >{children}</Button>
             <NextModal ref={ref} {...rest} isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}  isKeyboardDismissDisabled={true}>
                 <ModalContent>
                     {(onClose) => (

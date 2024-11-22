@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Button from '../../../components/global-components/Button';
-import { CountryFlag, EmailIcon, jbLogo, PhoneIcon, PrimaryPlus, UploaDoc, UserAvatar, UserPlaceholder } from '../../../images/index';
+import { EmailIcon, jbLogo, UploaDoc, UserPlaceholder } from '../../../images/index';
 import Input from '../../../components/global-components/Input';
 import Select from '../../../components/global-components/Select';
 import SignaturePad, { SignaturePadRef } from './SignaturePad';
@@ -10,7 +10,7 @@ import jsPDF from "jspdf";
 import { useAppContext } from '../../../context-api';
 import { useUserActions } from '../../../context-api/actions';
 import { Spinner } from '@nextui-org/react';
-
+import { toast } from "react-toastify";
 const AgreementForm = () => {
     const { state } = useAppContext();
     const { postMigration, loadingStates } = useUserActions();
@@ -18,8 +18,6 @@ const AgreementForm = () => {
     const user = state?.dashboard_data;
     const signaturePadRef = React.useRef<SignaturePadRef>(null);
     const migrateState = state?.post_migration;
-
-    const [success, setSuccess] = useState<boolean | null>(null);
 
     const initialValues = {
         documentType: '',
@@ -77,8 +75,6 @@ const AgreementForm = () => {
                 doc.addImage(signatureDataURL, "PNG", 10, 150, 110, 20);
             }
 
-            doc.save("agreement.pdf");
-
             const formData = new FormData();
             formData.append("kycType", values?.documentType || "");
 
@@ -106,26 +102,14 @@ const AgreementForm = () => {
 
             console.log("tyepeppep", typeof values?.confirm.toString())
             await postMigration(formData);
-            setSubmitting(false);
+            toast.success("Form submitted successfully");
 
         } catch (error) {
             console.error("Error submitting form:", error);
             setSubmitting(false);
+            toast.error("An error occurred while submitting the form.");
         }
     }
-
-
-    useEffect(() => {
-        if (migrateState?.data?.success == true) {
-            setSuccess(true);
-        } else if (migrateState?.data?.success == false) {
-            setSuccess(false);
-        }
-
-        setTimeout(() => {
-            setSuccess(null);
-        }, 3000);
-    }, [migrateState]);
 
     return (
         <div className="w-full">
@@ -251,18 +235,10 @@ const AgreementForm = () => {
                                 I agree to the terms and conditions
                             </label>
                         </div>
-                        {success == false &&
-                            (<div className="w-full bg-red-100 mt-5 text-red-500 text-center py-2 rounded-md text-xs mb-5">
-                                <p>An error occured. Please try agan.</p>
-                            </div>)
-                        }
-                        {success == true &&
-                            <div className="w-full bg-success-100 mt-5 text-success-500 text-center py-2 rounded-md text-xs mb-5">
-                                <p>Form Submitted Successfully</p>
-                            </div>
-                        }
+
                         <div className='flex justify-end'>
-                            <Button type="submit" fullWidth disabled={isSubmitting || user?.applicationStatus !== 'pending'} className="my-5 w-[150px] bg-app-primary text-white">
+                           
+                            <Button type="submit" fullWidth  isDisabled={isSubmitting || user?.applicationStatus !== 'pending' || !values?.confirm} className="my-5 w-[150px] bg-app-primary text-white">
                                 {isSubmitting ? <Spinner color='white' /> : 'Submit'}
                             </Button>
                         </div>

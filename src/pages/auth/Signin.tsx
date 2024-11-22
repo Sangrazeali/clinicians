@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeCloseIcon } from '../../images';
@@ -14,15 +14,23 @@ const Signin = () => {
     const { SignIn, loadingStates } = useUserActions();
     const navigate = useNavigate();
     const location = useLocation();
+    const [errorMessage, setErrorMessage] = useState(null);
     const [successMessage, setSuccessMessage] = useState(location.state?.message || null);
     const validationSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email format').required('Email is required'),
         password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
     });
 
-    const handleSubmit = (values: { email: string; password: string }) => {
-        console.log('Form Values:', values);
-        SignIn(values)
+    const handleSubmit = async (values: { email: string; password: string }) => {
+        try {
+            console.log('Form Values:', values);
+            await SignIn(values);
+            setErrorMessage(null);
+        }
+        catch(error: any) {
+            console.error("comp err",error);
+            setErrorMessage(error.message);
+        }
     };
 
     useEffect(() => {
@@ -46,6 +54,13 @@ const Signin = () => {
                         <div className='text-success-500 text-center bg-success-100 text-sm p-5 rounded-xl mb-10'>
                             <p>
                                 {successMessage}
+                            </p>
+                        </div>
+                    )}
+                    {errorMessage && (
+                        <div className='text-red-500 text-center text-xs bg-red-100 p-3 rounded-xl mb-10'>
+                            <p>
+                                {errorMessage}
                             </p>
                         </div>
                     )}
