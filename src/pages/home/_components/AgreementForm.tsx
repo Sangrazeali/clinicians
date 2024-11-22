@@ -151,11 +151,14 @@ const AgreementForm = () => {
 
                             <div className='mx-auto'>
                                 <div className=" bg-white">
-                                    {user?.profilePicture ? (
+                                    {user?.profilePhoto ? (
                                         <div className="bg-white">
                                             <label className="flex flex-col text-xs items-center gap-2">
                                                 <div className="w-full">
-                                                    <img src={user?.profilePicture || UserPlaceholder} className="rounded-xl" alt="Profile" />
+                                                    <label htmlFor="upload">
+                                                        <img src={user?.profilePhoto || UserPlaceholder} className="rounded-xl w-28 h-28" alt="Profile" />
+                                                        <input id="upload" accept="image/png" type="file" onChange={(e) => setFieldValue('profilePicture', e.target.files?.[0] || null)} className="hidden" />
+                                                    </label>
                                                 </div>
                                             </label>
                                         </div>
@@ -185,7 +188,7 @@ const AgreementForm = () => {
                                                     }
 
                                                 </label>
-                                                <input id="upload" type="file" onChange={(e) => setFieldValue('profilePicture', e.target.files?.[0] || null)} className="hidden" /></>
+                                                <input id="upload" accept="image/png" type="file" onChange={(e) => setFieldValue('profilePicture', e.target.files?.[0] || null)} className="hidden" /></>
                                         )}
 
                                 </div>
