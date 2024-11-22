@@ -185,7 +185,7 @@ export const useUserActions = () => {
       }
     } catch (err: any) {
       console.error(err);
-      const errorMessage = err?.data?.message || "Something went wrong please try again";
+      const errorMessage = err?.data?.message || "Something went wrong pelase try again";
       throw new Error(errorMessage);
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
