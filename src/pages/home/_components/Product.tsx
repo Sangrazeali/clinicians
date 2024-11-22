@@ -12,9 +12,9 @@ function Product({ image, name, price }: ProductProps) {
 
     return (
         <>
-            <div className='flex space-y-3 md:space-y-0 md:flex-nowrap justify-between items-center pt-5'>
+            <div className='flex space-y-3 md:space-y-0 px-7 md:flex-nowrap justify-between items-center pt-5'>
                 <div className='flex flex-col md:flex-row md:items-center gap-2'>
-                    <img src={image} className='w-[120px] md:w-[200px]' alt="" />
+                    <img src={image} className='w-[120px] md:w-[150px]' alt="" />
                     <div className=''>
                         <p className='font-semibold text-md'>{name}</p>
                     </div>

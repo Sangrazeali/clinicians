@@ -23,8 +23,8 @@ function ProductMigration({ loadingStates }: any) {
                                 </p>
                             </div>
 
-                            <div className='p-7'>
-                                <ul className='h-[350px] overflow-y-scroll scrollbar-hide'>
+                            <div className=''>
+                                <ul className='h-[350px] overflow-y-scroll small-scroll'>
                                     {loadingStates.productLoading === true ? <div className='flex justify-center items-center h-full'> <Spinner color='warning' /> </div> :
                                         products != null && products?.map((product: any, index: any) => (
                                             <li key={index} className='border-b pb-2'>
@@ -33,7 +33,7 @@ function ProductMigration({ loadingStates }: any) {
                                         ))
                                     }
                                 </ul>
-                                <div className='flex justify-end pt-7'>
+                                <div className='flex justify-end p-7'>
                                     {
                                         !user?.applicationStatus ? null :
                                             user.applicationStatus === "pending" ? (
