@@ -2,7 +2,7 @@ import React from 'react'
 import { BalanceBg } from '../../../images'
 import { formatNumber } from '../../../utils/numberFormatter';
 import { useAppContext } from '../../../context-api';
-import { Skeleton } from '@nextui-org/react';
+import { Skeleton, Spinner } from '@nextui-org/react';
 
 function BalanceMigration() {
   const { state } = useAppContext();
@@ -10,10 +10,10 @@ function BalanceMigration() {
   const formattedNumber = formatNumber(num);
   return (
     <div className='relative w-full' >
-      {formattedNumber === 'NaN' ? <div className='bg-white p-10 space-y-8'>
-        <Skeleton className="h-[50px] w-full  rounded-lg" />
-        <Skeleton className="h-[50px] w-full  rounded-lg" />
-        <Skeleton className="h-[50px] w-full  rounded-lg" />
+      {formattedNumber === 'NaN' ? <div className='bg-white border rounded-xl p-10 space-y-8'>
+        <div className='w-full h-full flex justify-center items-center'>
+          <Spinner color='warning' />
+        </div>
       </div> : (
 
         <>
