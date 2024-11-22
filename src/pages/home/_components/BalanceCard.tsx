@@ -38,7 +38,6 @@ function BalanceCard({ loadingStates }: any) {
     const user = state?.dashboard_data;
     const status = user?.applicationStatus || "unknown";
     const statusKey = status as keyof typeof statusData;
-    console.log('tstussss', statusKey);
     const { img, text, style } = statusData[statusKey];
     return (
         <div className='relative min-h-full'>
