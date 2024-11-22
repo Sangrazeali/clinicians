@@ -4,7 +4,7 @@ import NewPassword from "../pages/auth/NewPassword";
 import constantPaths from "../routes/constantPaths";
 import { FORGET_PASS, GET_DASHBOARD, GET_PRODUCTS, POST_MIGRATION, PROFILE, REST_PASS, SIGN_IN } from "../utils/networks/ApiEndPoints";
 import { ApiRequest } from "../utils/networks/ApiRequests";
-import { setAccessTokenCookie } from "../utils/cookies-actions/user.cookies";
+import { removeAccessTokenCookie, setAccessTokenCookie } from "../utils/cookies-actions/user.cookies";
 import { error } from "console";
 
 export interface State {
@@ -160,8 +160,13 @@ export const useUserActions = () => {
         dispatch({ type: "DASHBOARD_DATA", payload: response.data.result });
         console.log("response", response)
       }
+     
     } catch (err: any) {
       console.error(err);
+      if(err.status == 401){
+        removeAccessTokenCookie();
+        navigate(`${constantPaths.SIGN_IN}`)
+      }
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
     }
