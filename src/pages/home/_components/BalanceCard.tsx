@@ -61,7 +61,7 @@ function BalanceCard({ loadingStates }: any) {
                                 <DataSummary source={Total} label='Total Purchase Balance' loadingStates={loadingStates} value={user?.capital} />
                             </div>
                             <div className='flex justify-end pt-7'>
-                                {
+                                { (user?.products?.length ?? 0) === 0 ? '' :(
                                     !user?.applicationStatus ? null :
                                         user.applicationStatus === "pending" ? (
                                             <Modal
@@ -90,6 +90,7 @@ function BalanceCard({ loadingStates }: any) {
                                                 Unknown Status
                                             </p>
                                         )
+                                    )
                                 }
 
 

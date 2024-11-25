@@ -32,7 +32,7 @@ const ProfilePopOver = ({ setDropdownOpen, setIsLogoutClicked }: Props) => {
       <div className='flex flex-col absolute top-2.5 right-0 w-60 bg-white border border-borderLightGray shadow-lg h-auto rounded-lg'>
         <div className='w-full flex justify-start gap-2 items-center p-4'>
           <div>
-            <div className='w-10 h-10 overflow-hidden'>
+            <div className='w-8 h-8 overflow-hidden'>
               <img
                 src={user?.profilePicture ? user?.profilePicture : profileImg}
                 alt='Profile'
@@ -43,7 +43,7 @@ const ProfilePopOver = ({ setDropdownOpen, setIsLogoutClicked }: Props) => {
           <div className='flex flex-col gap-2 w-full'>
             <div className='flex flex-col gap-0'>
               <p
-                className='text-sm font-medium leading-0 flex items-center gap-2'
+                className='text-sm font-medium  leading-0 flex items-center gap-2'
               // onClick={() => setDropdownOpen(false)}
               >
                 @{user?.username}

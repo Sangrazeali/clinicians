@@ -26,7 +26,7 @@ const SignaturePad = forwardRef<SignaturePadRef>((_, ref) => {
                     onClick={() => sigCanvas.current?.clear()}
                     className="px-4 flex items-center gap-2 py-2 w-12 text-xs text-app-primary rounded hover:underline"
                 >
-                    <p>Reset</p> <img src={RotateLeft} alt="" />
+                    <p>Reset</p>
                 </button>
             </div>
             <SignatureCanvas

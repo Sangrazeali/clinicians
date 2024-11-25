@@ -36,7 +36,7 @@ function Input({
     return (
         <div className="mb-4 text-xs">
             <label className="block text-gray-700 text-sm mb-2" htmlFor={id}>
-                {label}
+                {label} <span className='text-red-500'>*</span>
             </label>
             <div className={`relative ${showPasswordToggle ? 'flex items-center' : ''}`}>
                 <input
