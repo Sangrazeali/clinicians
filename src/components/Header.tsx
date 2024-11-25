@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({
               className='flex items-center space-x-2'
             >
               <img
-                src={userData?.profilePhoto ? userData?.profilePhoto :'https://admin.homnifi.codeinprogress.net/img/Profile/profile.jpg'}
+                src={userData?.profilePhoto?.url ? userData?.profilePhoto?.url :'https://admin.homnifi.codeinprogress.net/img/Profile/profile.jpg'}
                 alt='Profile'
                 className='w-8 h-8 rounded-full'
               />
