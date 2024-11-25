@@ -18,7 +18,7 @@ const ProfilePopOver = ({ setDropdownOpen, setIsLogoutClicked }: Props) => {
   const user = {
     username: userData?.userName,
     email: userData?.email,
-    profilePicture: userData?.profilePhoto,
+    profilePicture: userData?.profilePhoto?.url,
   };
 
   const handleLogout = () => {
