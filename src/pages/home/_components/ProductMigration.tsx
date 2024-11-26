@@ -38,7 +38,7 @@ function ProductMigration({ loadingStates }: any) {
                                 {(user?.products?.length ?? 0) === 0 ? (
                                     <div className='flex flex-col space-y-7 justify-center items-center h-full py-7'>
                                         <img src={NoData} className='w-[200px]' alt="No data available" />
-                                        <p>No data available</p>
+                                        <p className='text-gray-500 text-sm'>You don't have anything to Migrate</p>
                                     </div>
                                 ) : !user?.applicationStatus ? null : (
                                     <div className="flex justify-end p-7">

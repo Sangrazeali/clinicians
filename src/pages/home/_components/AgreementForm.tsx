@@ -163,7 +163,7 @@ const AgreementForm = () => {
                                                         className="w-28 h-28 rounded-full object-cover"
                                                         alt="Profile"
                                                     />
-                                                    <div className="absolute -top-1 right-0">
+                                                    <div className="absolute -top-1 right-1">
                                                         <img src={PrimaryPlus} alt="Add Icon" />
                                                     </div>
                                                 </div>
@@ -267,7 +267,7 @@ const AgreementForm = () => {
                                     </div>
                                 </div>
                                 <p className="font-semibold mt-5">Signature</p>
-                                <p className="text-xs text-gray-500">Draw your signature below:</p>
+                                <p className="text-xs text-gray-500">Please draw your signature below:</p>
                                 <SignaturePad ref={signaturePadRef} />
                             </div>
 
@@ -278,7 +278,7 @@ const AgreementForm = () => {
                                         name="confirm"
                                         className="h-4 w-4 cursor-pointer rounded border-gray-300 text-app-primary shadow-sm focus:border-app-primary focus:ring-none focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400"
                                     />
-                                    I agree to the terms and conditions
+                                    I confirm that the information provided is accurate and valid
                                 </label>
                             </div>
 

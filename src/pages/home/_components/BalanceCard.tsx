@@ -121,16 +121,3 @@ function BalanceCard({ loadingStates }: any) {
 }
 
 export default BalanceCard
-
-
-/* <div className='text-[#FFCC00] text-center text-xs xl:text-sm'>
-                              <p>
-                                  Deposit
-                              </p>
-                              <div className='flex justify-between items-center gap-2'>
-                                  <img src={YellowRectangle} alt="" />
-                                  <p>
-                                      -<span>0.10</span>%
-                                  </p>
-                              </div>
-                          </div> */

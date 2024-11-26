@@ -61,7 +61,7 @@ function Input({
                         <img
                             src={showPassword ? eyeIcon : eyeCloseIcon}
                             alt="toggle visibility"
-                            className="w-4 h-4"
+                            className="w-4"
                         />
                     </button>
                 )}
