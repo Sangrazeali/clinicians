@@ -187,14 +187,14 @@ export const useUserActions = () => {
       if (response && response.data.success === true) {
         dispatch({ type: "POST_MIGRATION", payload: response.data });
         getDashboardData();
-        return true;  // Success
+        return true;
       } else {
-        return false; // Failure or no success flag
+        return false;
       }
     } catch (err: any) {
       console.error(err);
       if (err?.response?.status === 413) {
-        throw new Error(err?.data?.message || "Payload too large");  // Special error for 413
+        throw new Error(err?.data?.message || "Payload too large");
       } else {
         throw new Error(err?.data?.message || "Something went wrong, please try again.");
       }
