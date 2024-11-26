@@ -12,11 +12,10 @@ import { useUserActions } from '../../../context-api/actions';
 import { Spinner } from '@nextui-org/react';
 import { toast } from 'react-toastify';
 import { convertFileToBase64 } from '../../../utils/convertFileToBase64';
-import { url } from 'inspector';
 
 const AgreementForm = () => {
     const { state } = useAppContext();
-    const { postMigration, loadingStates } = useUserActions();
+    const { postMigration } = useUserActions();
     const [formError, setFormError] = useState<string | null>(null);
     const user = state?.dashboard_data;
     const signaturePadRef = useRef<SignaturePadRef>(null);

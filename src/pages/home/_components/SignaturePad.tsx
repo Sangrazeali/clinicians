@@ -1,6 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
-import { RotateLeft } from '../../../images';
 
 export interface SignaturePadRef {
     saveSignature: () => void;
