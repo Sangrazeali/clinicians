@@ -126,13 +126,20 @@ const AgreementForm = () => {
             formData.append("checkagreement", String(values?.confirm.toString()));
 
             console.log("tyepeppep", typeof values?.confirm.toString())
-            await postMigration(formData);
-            toast.success("Form submitted successfully");
-
-        } catch (error) {
+            const isSuccess = await postMigration(formData);
+            if (isSuccess) {
+                toast.success("Form submitted successfully");
+            } else {
+                toast.error("Payload too large, please reduce the file size and try again.");
+            }
+        } catch (error: any) {
             console.error("Error submitting form:", error);
             setSubmitting(false);
-            toast.error("An error occurred while submitting the form.");
+            if (error.message === "Payload too large") {
+                toast.error("Request too large, please reduce the file size and try again.");
+            } else {
+                toast.error("An error occurred while submitting the form.");
+            }
         }
     }
     return (
