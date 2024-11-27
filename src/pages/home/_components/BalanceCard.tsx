@@ -1,9 +1,10 @@
 import DataSummary from './DataSummary'
-import { Total, Spent, Verify, VerifyPending, MigrationAvatar, VerifyApproved, VerifyRejected } from '../../../images'
+import { Total, Spent, Verify, VerifyPending, MigrationAvatar, VerifyApproved, VerifyRejected, EyeIcon } from '../../../images'
 import { useAppContext } from '../../../context-api';
 import Modal from '../../../components/global-components/Modal';
 import AgreementForm from './AgreementForm';
 import { Spinner } from '@nextui-org/react';
+import Tooltip from '../../../components/global-components/Tooltip';
 
 const statusData = {
     pending: {
@@ -54,14 +55,15 @@ function BalanceCard({ loadingStates }: any) {
 
 
                         <div className=''>
-                            <div className='pb-5 flex justify-between items-end gap-5'>
-                                <DataSummary source={Spent} label='Total with Value' loadingStates={loadingStates} value={user?.balance} />
-                            </div>
                             <div className='pt-5 flex justify-between items-end gap-5 mb-7'>
-                                <DataSummary source={Total} label='Total Purchase Balance' loadingStates={loadingStates} value={user?.capital} />
+                                <DataSummary source={Total} label='Total Capital Balance' loadingStates={loadingStates} value={user?.capital} />
                             </div>
+                            <div className='pb-5 flex justify-between items-end gap-5'>
+                                <DataSummary source={Spent} label='Total Residue Balance' loadingStates={loadingStates} value={user?.balance} />
+                            </div>
+
                             <div className='flex justify-end pt-7'>
-                                { (user?.products?.length ?? 0) === 0 ? '' :(
+                                {(user?.products?.length ?? 0) === 0 ? '' : (
                                     !user?.applicationStatus ? null :
                                         user.applicationStatus === "pending" ? (
                                             <Modal
@@ -90,7 +92,7 @@ function BalanceCard({ loadingStates }: any) {
                                                 Unknown Status
                                             </p>
                                         )
-                                    )
+                                )
                                 }
 
 
@@ -105,12 +107,17 @@ function BalanceCard({ loadingStates }: any) {
                             }
 
                         </p>
+                        
                     </div>
                     <div className='hidden relative -mr-[20px] order-1 lg:order-2 lg:flex flex-col justify-center items-center'>
                         <img src={MigrationAvatar} alt="" />
                         <div className="w-80 h-40 -mt-[27px] px-5 bg-white flex flex-col items-center justify-center gap-2  rounded-t-full border border-[#E6E6E6]">
                             <img src={img} className="w-7" alt={text} />
-                            <p className="text-center">{text}</p>
+                            <p className="text-center flex flex-col items-center gap-2">{text}
+                                {user?.applicationStatus == "rejected" ?
+                                <span> <Tooltip message={user?.reason} children={<img src={EyeIcon} className='w-4' alt="" />} /> </span> : ''
+                            }
+                            </p>
                         </div>
                     </div>
 

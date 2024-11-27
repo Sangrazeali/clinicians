@@ -29,7 +29,7 @@ function ProductMigration({ loadingStates }: any) {
                                     {loadingStates.productLoading === true ? <div className='flex justify-center items-center h-full'> <Spinner color='warning' /> </div> :
                                         products != null && products?.map((product: any, index: any) => (
                                             <li key={index} className='border-b pb-2'>
-                                                <Product name={product?.name} image={product?.imageUrl} price={product?.amount} />
+                                                <Product name={product?.name} image={product?.imageUrl} price={product?.amount} quantity={product?.qty} />
                                             </li>
                                         ))
                                     }
