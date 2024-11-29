@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Button from '../../../components/global-components/Button';
@@ -19,7 +19,6 @@ const AgreementForm = () => {
     const [formError, setFormError] = useState<string | null>(null);
     const user = state?.dashboard_data;
     const signaturePadRef = useRef<SignaturePadRef>(null);
-
     const initialValues = {
         documentType: '',
         profilePicture: null as File | null,
@@ -141,6 +140,10 @@ const AgreementForm = () => {
             }
         }
     }
+
+    useEffect(() => {
+    console.log("useerss",user?.profilePhoto?.url)
+    })
     return (
         <div className="w-full">
             <div className="w-full">
@@ -162,7 +165,18 @@ const AgreementForm = () => {
                                 <div className="mx-auto">
                                     <div className="bg-white">
                                         <label htmlFor="upload" className="relative flex flex-col text-xs items-center gap-2 cursor-pointer">
-                                            {values.profilePicture ? (
+                                            {user?.profilePhoto?.url && !values.profilePicture ? (
+                                                <div className="relative">
+                                                    <img
+                                                        src={user.profilePhoto.url}
+                                                        className="w-28 h-28 rounded-full object-cover"
+                                                        alt="Profile"
+                                                    />
+                                                    <div className="absolute -top-1 right-1">
+                                                        <img src={PrimaryPlus} alt="Add Icon" />
+                                                    </div>
+                                                </div>
+                                            ) : values.profilePicture ? (
                                                 <div className="relative">
                                                     <img
                                                         src={URL.createObjectURL(values.profilePicture)}
@@ -180,8 +194,14 @@ const AgreementForm = () => {
                                                         <img src={PrimaryPlus} alt="Add Icon" />
                                                     </div>
                                                 </div>
+                                            
+                                            )
+                                            }
+
+                                            {!values.profilePicture && !user?.profilePhoto?.url && (
+                                                <span className="text-black text-xs">Add Profile Photo</span>
                                             )}
-                                            {!values.profilePicture && <span className="text-black text-xs">Add Profile Photo</span>}
+
                                             <input
                                                 id="upload"
                                                 accept="image/png"
@@ -190,6 +210,7 @@ const AgreementForm = () => {
                                                 className="hidden"
                                             />
                                         </label>
+
                                     </div>
                                 </div>
                                 <div className="mb-4">
