@@ -14,7 +14,7 @@ const Select: React.FC<SelectProps> = ({ label, name, options, value, onChange, 
   return (
     <div className="mb-4 text-sm w-full">
       <label className="block text-gray-700  mb-2" htmlFor={name}>
-        {label}
+        {label} <span className='text-red-500'>*</span>
       </label>
       <div className="relative">
         <select

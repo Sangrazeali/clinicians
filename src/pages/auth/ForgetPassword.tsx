@@ -5,6 +5,8 @@ import AuthBanner from '../../components/Banner/AuthBanner';
 import Input from '../../components/global-components/Input';
 import Button from '../../components/global-components/Button';
 import { useUserActions } from '../../context-api/actions';
+import { Link } from 'react-router-dom';
+import constantPaths from '../../routes/constantPaths';
 
 function ForgetPassword() {
     const [errorMessage, setErrorMessage] = useState(null);
@@ -62,6 +64,11 @@ function ForgetPassword() {
                             </Form>
                         )}
                     </Formik>
+                    <p className="text-center mt-3">
+                                        <Link to={constantPaths.SIGN_IN} className="text-xs text-gray-500 hover:underline">
+                                            Already have an account? Sign In
+                                        </Link>
+                                    </p>
                 </div>
                 <AuthBanner />
             </div>

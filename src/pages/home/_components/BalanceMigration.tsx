@@ -6,8 +6,8 @@ import { Skeleton, Spinner } from '@nextui-org/react';
 
 function BalanceMigration() {
   const { state } = useAppContext();
-  const num = state?.dashboard_data?.balance
-  const formattedNumber = formatNumber(num);
+  const user = state?.dashboard_data
+  const formattedNumber = formatNumber(user?.balance);
   return (
     <div className='relative w-full' >
       {formattedNumber === 'NaN' ? <div className='bg-white border rounded-xl p-10 space-y-8'>

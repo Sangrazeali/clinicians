@@ -172,30 +172,37 @@ export const useUserActions = () => {
     }
   };
 
-  const postMigration = async (formData: FormData) => {
+   const postMigration = async (formData: FormData): Promise<boolean> => {
     const actionKey = "migrationLoading";
     try {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: true } });
-
+  
       const response = await ApiRequest().request({
         method: "POST",
         url: `${POST_MIGRATION}`,
         data: formData,
-        headers: { "Content-Type": "multipart/form-data" }, // Let the browser set the boundary
+        headers: { "Content-Type": "multipart/form-data" },
       });
-
-      if (response && response.data.success == true) {
+  
+      if (response && response.data.success === true) {
         dispatch({ type: "POST_MIGRATION", payload: response.data });
         getDashboardData();
+        return true;
+      } else {
+        return false;
       }
     } catch (err: any) {
       console.error(err);
-      const errorMessage = err?.data?.message || "Something went wrong pelase try again";
-      throw new Error(errorMessage);
+      if (err?.response?.status === 413) {
+        throw new Error(err?.data?.message || "Payload too large");
+      } else {
+        throw new Error(err?.data?.message || "Something went wrong, please try again.");
+      }
     } finally {
       dispatch({ type: "SET_LOADING", payload: { key: actionKey, value: false } });
     }
   };
+  
 
   const Profile = async () => {
     const actionKey = "profileLoading";

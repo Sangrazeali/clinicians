@@ -6,13 +6,13 @@ const PieChart = ({ balance, total }: { balance: number; total: number }) => {
       id: "balance",
       label: "Balance",
       value: balance,
-      color: "#f72585",
+      color: "#1C6DC1",
     },
     {
       id: "total",
       label: "Total",
       value: total,
-      color: "#480ca8",
+      color: "#FFCC00",
     },
   ];
   return (
