@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
   }, []);
 
   return (
-    <header className='border-b bg-black p-2 md:p-4'>
+    <header className='bg-black p-2 md:p-4 sticky top-0 z-50'>
       <div className='container mx-auto px-5  flex items-center space-x-3 md:justify-between'>
         <div className=' flex items-center justify-between md:justify-normal space-x-4 w-full'>
           <Link to={`/`}>
@@ -61,11 +61,6 @@ const Header: React.FC<HeaderProps> = ({
               className='flex items-center space-x-2'
             >
              <div className="w-8 h-8">
-             <img
-                src={userData?.profilePhoto?.url ? userData?.profilePhoto?.url :'https://admin.homnifi.codeinprogress.net/img/Profile/profile.jpg'}
-                alt='Profile'
-                className='w-full h-full rounded-full'
-              />
              </div>
 
               <span className='whitespace-nowrap'>{userData?.userName}</span>

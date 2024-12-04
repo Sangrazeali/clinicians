@@ -18,7 +18,7 @@ function Product({ image, name, price,quantity }: ProductProps) {
                         <p className='font-semibold text-md'>{name}</p>
                     </div>
                 </div>
-                <p className='font-semibold text-md text-center'>x{quantity}</p>
+                <p className='font-semibold text-md text-center'>{quantity} <sub className='text-xs font-normal text-gray-500'>Qty</sub></p>
                 <p className='font-semibold text-md text-center md:text-end'><span>{formattedNumber == '0' ? 'Free' : (name == 'mLYK' ? <span>{formattedNumber} mLYK</span> : <span>$ {formattedNumber}</span>) }</span></p>
             </div>
         </>
