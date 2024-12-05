@@ -70,9 +70,15 @@ function ProductMigration({ loadingStates }: any) {
                                                     );
                                                 case "rejected":
                                                     return (
-                                                        <p className="w-[200px] text-center py-2 px-4 text-red-800 bg-red-100 rounded-md capitalize">
-                                                            {user.applicationStatus}
-                                                        </p>
+                                                            <Modal
+                                                                children="Retry Migration"
+                                                                btncolor="primary"
+                                                                size="5xl"
+                                                                scrollBehavior="inside"
+                                                                className="scrollbar-hide"
+                                                                btnClasses="w-[200px] shadow-md bg-[#F8971D]"
+                                                                bodyContent={<AgreementForm />}
+                                                            />
                                                     );
                                                 default:
                                                     return (

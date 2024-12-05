@@ -59,7 +59,9 @@ function BalanceCard({ loadingStates }: any) {
                                 <DataSummary source={Total} label='Total Capital Balance' loadingStates={loadingStates} value={user?.capital} />
                             </div>
                             <div className='pb-5 flex justify-between items-end gap-5'>
-                                <DataSummary source={Spent} label='Total Residue Balance' loadingStates={loadingStates} value={user?.balance} />
+                                <DataSummary source={Spent} label='Total Residue Balance' loadingStates={loadingStates} value={
+                                    user?.applicationStatus === 'approved' ? 0 : user?.balance
+                                } />
                             </div>
 
                             <div className='flex justify-end pt-7'>
@@ -84,9 +86,15 @@ function BalanceCard({ loadingStates }: any) {
                                                 {user.applicationStatus}
                                             </p>
                                         ) : user.applicationStatus === "rejected" ? (
-                                            <p className="w-[200px] text-center py-2 px-4 text-red-800 bg-red-100 rounded-md capitalize">
-                                                {user.applicationStatus}
-                                            </p>
+                                            <Modal
+                                                children="Retry Migration"
+                                                btncolor="primary"
+                                                size="5xl"
+                                                scrollBehavior="inside"
+                                                className="scrollbar-hide"
+                                                btnClasses='w-[200px] bg-transparent border border-black text-black hover:bg-black hover:text-white'
+                                                bodyContent={<AgreementForm />}
+                                            />
                                         ) : (
                                             <p className="w-[200px] text-center py-2 px-4 text-gray-800 bg-gray-100 rounded-md capitalize">
                                                 Unknown Status
@@ -107,7 +115,7 @@ function BalanceCard({ loadingStates }: any) {
                             }
 
                         </p>
-                        
+
                     </div>
                     <div className='hidden relative -mr-[20px] order-1 lg:order-2 lg:flex flex-col justify-center items-center'>
                         <img src={MigrationAvatar} alt="" />
@@ -115,8 +123,15 @@ function BalanceCard({ loadingStates }: any) {
                             <img src={img} className="w-7" alt={text} />
                             <p className="text-center flex flex-col items-center gap-2">{text}
                                 {user?.applicationStatus == "rejected" ?
-                                <span> <Tooltip message={user?.reason} children={<img src={EyeIcon} className='w-4' alt="" />} /> </span> : ''
-                            }
+                                    <span> <Tooltip message={user?.reason} children=
+                                        {
+                                            <div className='flex items-center gap-1 cursor-pointer'>
+                                                <img src={EyeIcon} className='w-4' alt="" />
+                                                <p className='text-xs text-gray-500'>Reason</p>
+                                            </div>
+                                        }
+                                    /> </span> : ''
+                                }
                             </p>
                         </div>
                     </div>
