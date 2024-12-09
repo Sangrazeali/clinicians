@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'custom-gradient': 'linear-gradient(210.19deg, #F8971D -118.53%, #F3F3F3 41.02%)',
+        migratedBg: "url('/src/images/balance_background.png')",
       },
       colors: {
         app: {
