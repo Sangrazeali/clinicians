@@ -19,7 +19,7 @@ function ProductMigration({ loadingStates }: any) {
                         <div className='w-full'>
                             <div className='border-b p-7 rounded-t-xl bg-[#F5F5F5]'>
                                 <p className='text-black text-sm md:text-lg flex items-center'>
-                                    {user?.applicationStatus === 'approved' ? 'What you recieved' : 'What you will recieve'}
+                                    {user?.applicationStatus === 'approved' ? 'What You Recieved in Homnifi' : 'What You Will Recieve in Homnifi'}
                                     <span className='text-xl ml-3 font-semibold bg-white border border-[#C6C6C6] py-1 px-3 rounded-lg text-center'>${formattedNumber !== "NaN" ? formattedNumber : "0"}</span>
                                 </p>
                             </div>
