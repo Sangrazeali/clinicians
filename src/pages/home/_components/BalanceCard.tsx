@@ -70,11 +70,11 @@ function BalanceCard({ loadingStates }: any) {
                                         user.applicationStatus === "pending" ? (
                                             <Modal
                                                 children="Migrate"
-                                                btncolor="primary"
+                                                btncolor="secondary"
                                                 size="5xl"
                                                 scrollBehavior="inside"
                                                 className="scrollbar-hide"
-                                                btnClasses='w-[200px] bg-transparent border border-black text-black hover:bg-black hover:text-white'
+                                                btnClasses='w-[200px] text-white bg-app-primary'
                                                 bodyContent={<AgreementForm />}
                                             />
                                         ) : user.applicationStatus === "applied" ? (
