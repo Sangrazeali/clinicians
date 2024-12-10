@@ -10,20 +10,18 @@ function BalanceMigration() {
   const formattedNumber = formatNumber(user?.balance);
   const diff = user?.totalReceived -user?.balance;
   return (
-    <div className='relative w-full px-10 flex' >
-      {formattedNumber === 'NaN' ? <div className='bg-white border rounded-xl p-10 space-y-8'>
+    <div className='relative w-full px-10 py-14 flex bg-migratedBg w-full rounded-lg bg-cover bg-center justify-center md:justify-start' >
+      {formattedNumber === 'NaN' ?
+      <div className='p-10 space-y-8'>
         <div className='w-full h-full flex justify-center items-center'>
           <Spinner color='warning' />
         </div>
       </div> : (
-
-        <>
-
-          <div className="flex gap-10 flex-col md:flex-row items-center py-20">
-            <div className='relative !z-10 flex flex-col gap-4 w-auto items-center'>
+          <div className="flex gap-4 md:gap-10 flex-col md:flex-row items-center md:items-end">
+            <div className='flex flex-col gap-4 items-center'>
               <h2 className='text-lg'>
                 {
-                  user?.applicationStatus === 'approved' ? 'Your Migrated Balance' : 'Your Balance To Migrate'
+                  user?.applicationStatus === 'approved' ? 'Your Migrated Balance' : 'Your Balance To Migrate' 
                 }
               </h2>
 
@@ -31,33 +29,16 @@ function BalanceMigration() {
                 <h1 className='text-2xl md:text-4xl lg:text-4xl font-semibold bg-sky-50/50 py-1.5 px-8 rounded-lg text-center'>${formattedNumber}</h1>
               </div>
             </div>
-            <div className='relative !z-10 flex flex-col gap-4 w-auto'>
-              <h2 className='text-lg invisible'>
-                {
-                  user?.applicationStatus === 'approved' ? 'hi' : 'hi'
-                }
-              </h2>
-
-              <div className='flex'>
-
-                <span className='relative !z-10 text-4xl text-black py-1.5 px-1 rounded-lg p-4'>+</span>
-              </div>
-            </div>
-            <div className='relative !z-10 flex flex-col gap-4 w-auto items-center'>
+            <span className='text-4xl text-black py-1.5 px-1 rounded-lg p-4'>+</span>
+            <div className='flex flex-col gap-4 items-center'>
               <h2 className='text-lg'>
-                {
-                  user?.applicationStatus === 'approved' ? 'Your Migrated Balance' : 'Extra Bonus'
-                }
+              Extra Bonus
               </h2>
 
-              <div className='flex'>
-                <h1 className='text-2xl md:text-4xl lg:text-4xl font-semibold bg-sky-50/50 py-1.5 px-8 rounded-lg text-center'>${formatNumber(diff)}</h1>
-              </div>
+              <h1 className='text-2xl md:text-4xl lg:text-4xl font-semibold bg-sky-50/50 py-1.5 px-8 rounded-lg text-center'>${formatNumber(diff)}</h1>
             </div>
 
           </div>
-          <img src={BalanceBg} className='absolute right-0 top-0 !z-0 w-full object-cover md:h-auto rounded-xl h-auto' alt="" />
-        </>
       )}
 
     </div>
