@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Spinner } from '@nextui-org/react';
 import constantPaths from './constantPaths';
+import path from 'path';
 
 const Home = React.lazy(() => import("../pages/home/Home"));
 
@@ -22,6 +23,7 @@ const routes = [
 ];
 
 function RedirectToHome() {
+  if(window.location.href !== constantPaths.HOME)
   window.location.href = constantPaths.HOME;
   return null;
 }
