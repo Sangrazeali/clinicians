@@ -13,24 +13,31 @@ module.exports = {
       },
       colors: {
         app: {
-          primary: "#F8971D",
+          primary: "#731054",
+          secondary: '#707070'
         }
       },
     }
   },
-  plugins: [nextui({
-    layout: {
-      radius: {
-        small: "4px",
+  plugins: [
+    nextui({
+      layout: {
+        radius: {
+          sm: "4px",
+        },
       },
       themes: {
         light: {
           colors: {
-            primary: { DEFAULT: "#F8971D", foreground: "#FFFFFF" },
+            primary: {
+              DEFAULT: "#731054",
+              foreground: "#FFFFFF",
+            },
+
           },
         },
         dark: {},
       },
-    },
-  })],
+    }),
+  ],
 };

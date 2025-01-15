@@ -1,20 +1,21 @@
 import React from 'react';
 
 interface SelectProps {
-  label: string;
+  label?: string;
   name: string;
-  options: string[];
+  options?: string[];
   value?: string;
+  placeholder: string;
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void;
   errorMessage?: string;
 }
 
-const Select: React.FC<SelectProps> = ({ label, name, options, value, onChange, onBlur, errorMessage }) => {
+const Select: React.FC<SelectProps> = ({ label, name, options, value, placeholder, onChange, onBlur, errorMessage }) => {
   return (
     <div className="mb-4 text-sm w-full">
-      <label className="block text-gray-700  mb-2" htmlFor={name}>
-        {label} <span className='text-red-500'>*</span>
+      <label className="block text-gray-700 font-semibold  mb-2" htmlFor={name}>
+        {label}
       </label>
       <div className="relative">
         <select
@@ -23,10 +24,11 @@ const Select: React.FC<SelectProps> = ({ label, name, options, value, onChange, 
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          className={`block appearance-none w-full text-xs border text-gray-700 py-2.5 px-3 rounded leading-tight focus:outline-none 
-            ${errorMessage ? 'border-red-500' : 'border-gray-200'} focus:bg-white`}
+          className={`block appearance-none w-full text-sm border text-gray-700 py-2.5 px-3 rounded leading-tight focus:outline-none 
+          ${errorMessage ? 'border-red-500' : 'border-gray-200'} focus:bg-white`}
         >
-          {options.map((option, index) => (
+     
+          {options && options.map((option, index) => (
             <option key={index} value={option}>
               {option}
             </option>
@@ -38,7 +40,7 @@ const Select: React.FC<SelectProps> = ({ label, name, options, value, onChange, 
           </svg>
         </div>
       </div>
-      {errorMessage && <p className="text-red-500 text-xs mt-1">{errorMessage}</p>}
+      {errorMessage && <p className="text-red-500 text-sm mt-1">{errorMessage}</p>}
     </div>
   );
 };
