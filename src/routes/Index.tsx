@@ -18,14 +18,9 @@ const routes = [
   },
   {
     path: '*',
-    element: <RedirectToHome />
+    element: <Home />
   }
 ];
 
-function RedirectToHome() {
-  if(window.location.href !== constantPaths.HOME)
-  window.location.href = constantPaths.HOME;
-  return null;
-}
 
 export default routes;
